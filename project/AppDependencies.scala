@@ -3,8 +3,9 @@ import sbt.*
 object AppDependencies {
 
   lazy val bootstrapPlayVersion = "10.7.0"
-  val apiDomainVersion          = "1.5.0"
-  val appDomainVersion          = "1.2.0"
+  val commonDomainVersion       = "1.4.0"
+  val apiDomainVersion          = "1.8.0"
+  val appDomainVersion          = "1.6.0"
   val playfrontendVersion       = "13.11.0"
   lazy val mongoVersion         = "2.13.0"
   val mockitoScalaVersion       = "2.2.1"
@@ -15,6 +16,7 @@ object AppDependencies {
     "uk.gov.hmrc.mongo" %% "hmrc-mongo-play-30"              % mongoVersion,
     "org.typelevel"     %% "cats-core"                       % "2.13.0",
     "uk.gov.hmrc"       %% "internal-auth-client-play-30"    % "4.4.0",
+    "uk.gov.hmrc"       %% "api-platform-common-domain"      % commonDomainVersion,
     "uk.gov.hmrc"       %% "api-platform-application-domain" % appDomainVersion,
     "uk.gov.hmrc"       %% "api-platform-api-domain"         % apiDomainVersion
   )
@@ -24,6 +26,7 @@ object AppDependencies {
     "uk.gov.hmrc.mongo" %% "hmrc-mongo-test-play-30"                  % mongoVersion,
     "org.jsoup"          % "jsoup"                                    % "1.22.1",
     "org.mockito"       %% "mockito-scala-scalatest"                  % mockitoScalaVersion,
+    "uk.gov.hmrc"       %% "api-platform-common-domain-fixtures"      % commonDomainVersion,
     "uk.gov.hmrc"       %% "api-platform-application-domain-fixtures" % appDomainVersion
   ).map(_ % "test")
 }
