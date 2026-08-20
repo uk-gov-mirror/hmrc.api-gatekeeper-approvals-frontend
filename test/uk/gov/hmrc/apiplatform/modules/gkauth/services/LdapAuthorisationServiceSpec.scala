@@ -19,8 +19,6 @@ package uk.gov.hmrc.apiplatform.modules.gkauth.services
 import scala.concurrent.ExecutionContext.Implicits.global
 import scala.concurrent.Future
 
-import org.mockito.scalatest.MockitoSugar
-
 import play.api.mvc.{ControllerComponents, MessagesRequest}
 import play.api.test.{FakeRequest, StubControllerComponentsFactory}
 import uk.gov.hmrc.internalauth.client.Retrieval
@@ -30,7 +28,7 @@ import uk.gov.hmrc.apiplatform.modules.gkauth.domain.models.{GatekeeperRoles, Lo
 
 import uk.gov.hmrc.apigatekeeperapprovalsfrontend.utils.AsyncHmrcSpec
 
-class LdapAuthorisationServiceSpec extends AsyncHmrcSpec with StubControllerComponentsFactory with MockitoSugar {
+class LdapAuthorisationServiceSpec extends AsyncHmrcSpec with StubControllerComponentsFactory {
   val fakeRequest = FakeRequest()
 
   val cc: ControllerComponents = stubMessagesControllerComponents()

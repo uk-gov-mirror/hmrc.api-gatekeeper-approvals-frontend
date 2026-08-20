@@ -18,7 +18,6 @@ package uk.gov.hmrc.apigatekeeperapprovalsfrontend.controllers
 
 import java.time.Instant
 
-import org.mockito.{ArgumentMatchersSugar, MockitoSugar}
 import org.scalatestplus.play.guice.GuiceOneAppPerSuite
 
 import play.api.inject.guice.GuiceApplicationBuilder
@@ -40,7 +39,6 @@ import uk.gov.hmrc.apigatekeeperapprovalsfrontend.utils.{AsyncHmrcSpec, WithCSRF
 
 class AbstractControllerSpec
     extends AsyncHmrcSpec
-    with MockitoSugar with ArgumentMatchersSugar
     with GuiceOneAppPerSuite
     with WithCSRFAddToken
     with ApplicationWithCollaboratorsFixtures

@@ -20,9 +20,6 @@ import java.time.Instant
 import scala.concurrent.ExecutionContext.Implicits.global
 import scala.concurrent.Future.successful
 
-import org.mockito.ArgumentMatchersSugar
-import org.mockito.scalatest.MockitoSugar
-
 import uk.gov.hmrc.http.HeaderCarrier
 
 import uk.gov.hmrc.apiplatform.modules.applications.core.domain.models.ApplicationWithCollaboratorsFixtures
@@ -39,7 +36,7 @@ import uk.gov.hmrc.apigatekeeperapprovalsfrontend.utils.AsyncHmrcSpec
 
 class SubmissionServiceSpec extends AsyncHmrcSpec with MarkedSubmissionsTestData with ApplicationWithCollaboratorsFixtures {
 
-  trait Setup extends FixedClock with MockitoSugar with ArgumentMatchersSugar {
+  trait Setup extends FixedClock {
     implicit val hc: HeaderCarrier                                   = HeaderCarrier()
     val applicationId                                                = applicationIdOne
     val mockSubmissionsConnector: SubmissionsConnector               = mock[SubmissionsConnector]
