@@ -16,12 +16,12 @@
 
 package uk.gov.hmrc.apigatekeeperapprovalsfrontend.controllers
 
-import java.time.format.DateTimeFormatter
-import java.time.{Instant, ZoneId}
+import java.time.Instant
 import scala.concurrent.ExecutionContext
 
 import play.api.mvc.*
 
+import uk.gov.hmrc.apiplatform.modules.common.domain.services.DateFormatter
 import uk.gov.hmrc.apiplatform.modules.common.services.{ApplicationLogger, EitherTHelper}
 import uk.gov.hmrc.apiplatform.modules.gkauth.controllers.GatekeeperBaseController
 import uk.gov.hmrc.apiplatform.modules.gkauth.services.StrideAuthorisationService
@@ -41,9 +41,7 @@ abstract class AbstractApplicationController(
     with ApplicationLogger
     with ApplicationToSimpleApplicationId {
 
-  private val dateTimeFormatter = DateTimeFormatter.ofPattern("dd MMMM yyyy").withZone(ZoneId.systemDefault())
-
   extension (dateTime: Instant) {
-    def asText = dateTimeFormatter.format(dateTime)
+    def asText = DateFormatter.formatTwoDigitDay(dateTime)
   }
 }

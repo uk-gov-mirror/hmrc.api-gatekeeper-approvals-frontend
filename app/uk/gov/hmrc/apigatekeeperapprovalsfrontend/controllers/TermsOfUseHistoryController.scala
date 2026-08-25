@@ -25,6 +25,7 @@ import play.api.mvc.{Action, AnyContent, MessagesControllerComponents}
 
 import uk.gov.hmrc.apiplatform.modules.applications.core.domain.models.{ApplicationName, ApplicationWithCollaborators}
 import uk.gov.hmrc.apiplatform.modules.common.domain.models.ApplicationId
+import uk.gov.hmrc.apiplatform.modules.common.domain.services.DateFormatter
 import uk.gov.hmrc.apiplatform.modules.common.services.ApplicationLogger
 import uk.gov.hmrc.apiplatform.modules.gkauth.services.{LdapAuthorisationService, StrideAuthorisationService}
 import uk.gov.hmrc.apiplatform.modules.submissions.domain.models.Submission.Status.*
@@ -164,7 +165,7 @@ class TermsOfUseHistoryController @Inject() (
 
     def buildModelFromInvitationStateAndDate(status: TermsOfUseInvitationState, date: Option[Instant]): TermsOfUseHistory = {
       TermsOfUseHistory(
-        date.fold("Unknown")(d => DateTimeFormatter.ofPattern("dd MMMM yyyy").withZone(ZoneId.systemDefault()).format(d)),
+        date.fold("Unknown")(d => DateFormatter.formatTwoDigitDay(d)),
         deriveInvitationStatusDisplayName(status),
         deriveInvitationStatusDescription(status),
         None,
@@ -239,7 +240,7 @@ class TermsOfUseHistoryController @Inject() (
             gatekeeperApplicationUrl,
             isInHouseSoftware(sub),
             submission.isDefined,
-            DateTimeFormatter.ofPattern("dd MMMM yyyy").withZone(ZoneId.systemDefault()).format(invite.dueBy)
+            DateFormatter.formatTwoDigitDay(invite.dueBy)
           )
         }
         case None      => {
@@ -250,7 +251,7 @@ class TermsOfUseHistoryController @Inject() (
             gatekeeperApplicationUrl,
             false,
             submission.isDefined,
-            DateTimeFormatter.ofPattern("dd MMMM yyyy").withZone(ZoneId.systemDefault()).format(invite.dueBy)
+            DateFormatter.formatTwoDigitDay(invite.dueBy)
           )
         }
       }

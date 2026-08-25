@@ -16,8 +16,6 @@
 
 package uk.gov.hmrc.apigatekeeperapprovalsfrontend.controllers
 
-import java.time.ZoneId
-import java.time.format.DateTimeFormatter
 import javax.inject.{Inject, Singleton}
 import scala.concurrent.ExecutionContext
 
@@ -26,6 +24,7 @@ import play.api.data.Forms.*
 import play.api.mvc.MessagesControllerComponents
 
 import uk.gov.hmrc.apiplatform.modules.common.domain.models.ApplicationId
+import uk.gov.hmrc.apiplatform.modules.common.domain.services.DateFormatter
 import uk.gov.hmrc.apiplatform.modules.common.services.ApplicationLogger
 import uk.gov.hmrc.apiplatform.modules.gkauth.services.{LdapAuthorisationService, StrideAuthorisationService}
 import uk.gov.hmrc.apiplatform.modules.submissions.domain.models.TermsOfUseInvitationState.*
@@ -95,7 +94,7 @@ class TermsOfUseInvitationController @Inject() (
       ViewModel(
         invite.applicationId,
         invite.applicationName,
-        DateTimeFormatter.ofPattern("dd MMMM yyyy").withZone(ZoneId.systemDefault()).format(invite.lastUpdated),
+        DateFormatter.formatTwoDigitDay(invite.lastUpdated),
         deriveTermsOfUseStatusDisplayName(invite.status)
       )
     }
